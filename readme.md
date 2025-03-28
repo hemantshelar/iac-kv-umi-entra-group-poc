@@ -16,9 +16,8 @@
 
  - az login 
  - az account list 
- - az account set --subscription=""
- - az ad sp create-for-rbac --role="Contributor" --scopes="subscriptions/sbu"  --display-name="SPN_TF_IAC_KV_UMI_ENTRA_GROUP_POC"
- > output of this command will be 
+ - az account set --subscription="subid"
+ - az ad sp create-for-rbac --role="Contributor" --scopes="subscriptions/subid"  --display-name="SPN_TF_IAC_KV_UMI_ENTRA_GROUP_POC"
   <pre>{
         "appId": "",
         "displayName": "",
@@ -88,7 +87,7 @@ commands will detect it and remind you to do so if necessary.
 This is simeple and my prefered way to autheticate against Azure by configuring following 4 environment variables
  - export ARM_SUBSCRIPTION_ID="sub here"
  - export ARM_TENANT_ID="tenant id here"
- - export ARM_CLIENT_ID=""
+ - export ARM_CLIENT_ID="clientid"
  - export ARM_CLIENT_SECRET="secret here"
 
 At this stage we are successfully autheticated and ready to create resources.
