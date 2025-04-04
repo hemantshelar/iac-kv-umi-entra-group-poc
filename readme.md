@@ -27,7 +27,7 @@
 }</pre>
 - az login --service-principal -u CLIENT_ID -p CLIENT_SECRET --tenant TENANT_ID
 
-**Configuring remote state**
+## Configuring remote state
 
 When we try to run following command 
 `terraform init` first time we will get following error.
@@ -92,3 +92,15 @@ This is simeple and my prefered way to autheticate against Azure by configuring 
 
 At this stage we are successfully autheticated and ready to create resources.
 
+## Keyvault Configuration
+
+Once key vault is created its not accessible to anyone
+
+>The Key Vault Contributor role is for control plane operations only to manage key vaults. It does not allow access to keys, secrets and certificates. More information [here](https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide?tabs=azure-cli)
+
+![Key Vault Configuration Screenshot](./imgs/kv1.png)
+
+
+After configuring RBACK role - `` for UMI we can configure environment variable in WebApp using [KeyVault Reference](https://learn.microsoft.com/en-us/azure/app-service/app-service-key-vault-references?tabs=azure-cli).
+
+![Error](./imgs/kv2Error.png)

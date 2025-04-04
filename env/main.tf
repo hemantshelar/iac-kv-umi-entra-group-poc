@@ -23,3 +23,26 @@ module "AppServicePlan" {
   name_suffix = module.ResourceGroup.name_suffix
   depends_on  = [module.ResourceGroup, module.UserManagedIdentity]
 }
+
+module "WebApp" {
+  source      = "../modules/WebApp"
+  location    = var.location
+  rgname      = module.ResourceGroup.rgname
+  name_suffix = module.ResourceGroup.name_suffix
+  app_service_plan_id = module.AppServicePlan.app_service_plan_id
+  umi_id = module.UserManagedIdentity.id
+  umi_principal_id = module.UserManagedIdentity.principal_id
+  depends_on  = [module.ResourceGroup, module.UserManagedIdentity, module.AppServicePlan]
+}
+
+
+module "KeyVault" {
+  source      = "../modules/KeyVault"
+  location    = var.location
+  rgname      = module.ResourceGroup.rgname
+  name_suffix = module.ResourceGroup.name_suffix
+  principal_id = module.UserManagedIdentity.principal_id
+  depends_on  = [module.ResourceGroup, module.UserManagedIdentity] 
+}
+
+
